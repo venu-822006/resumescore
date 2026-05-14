@@ -1,0 +1,66 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "lastReadinessScore": { "type": "number" },
+        "resumeScore": { "type": "number" },
+        "readinessHistory": {
+          "type": "object",
+          "properties": {
+            "date": { "type": "string" },
+            "score": { "type": "number" },
+            "breakdown": {
+              "type": "object",
+              "properties": {
+                "technical": { "type": "number" },
+                "resume": { "type": "number" },
+                "communication": { "type": "number" },
+                "portfolio": { "type": "number" }
+              }
+            }
+          }
+        }
+      },
+      "required": ["uid", "email"]
+    },
+    "Interview": {
+      "title": "Interview History",
+      "description": "Historical mock interview sessions",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "role": { "type": "string" },
+        "persona": { "type": "string" },
+        "date": { "type": "string" },
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "role": { "type": "string" },
+              "content": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "firestore": {
+    "users/{userId}": {
+      "schema": "User",
+      "description": "The user document"
+    },
+    "users/{userId}/interviews/{interviewId}": {
+      "schema": "Interview",
+      "description": "User's interview history sessions"
+    }
+  }
+}

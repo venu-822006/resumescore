@@ -1,0 +1,75 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@400;600;700;800;900&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  
+  --color-bg-primary: #060608;
+  --color-bg-secondary: #0c0c10;
+  --color-bg-tertiary: #111118;
+  --color-gold: #c9a227;
+  --color-gold-bright: #f0c84a;
+  --color-rust: #c0442a;
+  --color-ink-primary: #f0ead8;
+  --color-ink-secondary: #a89e88;
+  --color-ink-muted: #5a5448;
+}
+
+@layer base {
+  body {
+    @apply bg-bg-primary text-ink-primary antialiased font-sans selection:bg-gold selection:text-black;
+    @apply cursor-none; /* Custom cursor implementation needed */
+  }
+
+  body::before {
+    content: '';
+    @apply fixed inset-0 pointer-events-none z-[8000] opacity-[0.03];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-primary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold rounded-full transition-colors;
+}
+
+.font-serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+}
+
+.term-card {
+  @apply border border-white/5 bg-bg-secondary overflow-hidden;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.2);
+  border-radius: 10px;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(201, 162, 39, 0.4);
+}
